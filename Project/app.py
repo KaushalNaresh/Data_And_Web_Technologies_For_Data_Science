@@ -104,5 +104,8 @@ def update_scatter_plot(selected_demographic, selected_topic):
 
     return fig
 
+
+server = app.server
+
 if __name__ == '__main__':
     app.run_server(debug=False)
