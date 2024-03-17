@@ -8,7 +8,6 @@ import plotly.express as px
 import pandas as pd
 import plotly.graph_objects as go
 from sklearn.linear_model import LinearRegression
-import numpy as np
 
 demography_data = pd.read_csv('demography_data.csv', index_col=0)
 sentiment_scores = pd.read_csv('sentiment_scores.csv', index_col=0)
