@@ -8,6 +8,7 @@ import plotly.express as px
 import pandas as pd
 import plotly.graph_objects as go
 from sklearn.linear_model import LinearRegression
+import numpy as np
 
 demography_data = pd.read_csv('demography_data.csv', index_col=0)
 sentiment_scores = pd.read_csv('sentiment_scores.csv', index_col=0)
@@ -88,19 +89,17 @@ def update_sentiment_map(selected_topic):
      Input('topic-dropdown', 'value')]
 )
 def update_scatter_plot(selected_demographic, selected_topic):
-    X = demography_data[selected_demographic].values.reshape(-1, 1)
-    y = sentiment_scores[selected_topic].values
+    X = np.array(demography_data[selected_demographic].values).reshape(-1, 1)
+    y = np.array(sentiment_scores[selected_topic].values)
 
     reg = LinearRegression().fit(X, y)
 
-    min_x, max_x = X.min(), X.max()
-    line_X = [[x] for x in range(int(min_x), int(max_x)+1)]
-
+    line_X = np.linspace(X.min(), X.max(), 100).reshape(-1, 1)
     line_y = reg.predict(line_X)
 
     fig = go.Figure()
-    fig.add_trace(go.Scatter(x=[x[0] for x in X], y=y, mode='markers', name='Data'))
-    fig.add_trace(go.Scatter(x=[x[0] for x in line_X], y=line_y, mode='lines', name='Regression Line'))
+    fig.add_trace(go.Scatter(x=X.ravel(), y=y, mode='markers', name='Data'))
+    fig.add_trace(go.Scatter(x=line_X.ravel(), y=line_y, mode='lines', name='Regression Line'))
 
     return fig
 
