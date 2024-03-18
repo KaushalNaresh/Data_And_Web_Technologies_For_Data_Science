@@ -101,6 +101,9 @@ def update_scatter_plot(selected_demographic, selected_topic):
     fig.add_trace(go.Scatter(x=X.ravel(), y=y, mode='markers', name='Data'))
     fig.add_trace(go.Scatter(x=line_X.ravel(), y=line_y, mode='lines', name='Regression Line'))
 
+    fig.update_xaxes(title_text=f'{selected_demographic}')
+    fig.update_yaxes(title_text=f'{selected_topic}')
+
     return fig
 
 
