@@ -81,7 +81,7 @@ def render_subtab_content(subtab):
             israel_hamas_agg.index = israel_hamas_agg.index.to_timestamp()
         fig = px.area(
             israel_hamas_agg, x=israel_hamas_agg.index, y=israel_hamas_agg.columns,
-            title='Monthly Articles Count by Bias Rating'
+            title='Articles Count by Bias Rating'
         )
         return dcc.Graph(figure=fig)
     elif subtab == 'ukraine-russia':
@@ -90,7 +90,7 @@ def render_subtab_content(subtab):
             ukraine_russia_agg.index = ukraine_russia_agg.index.to_timestamp()
         fig = px.area(
             ukraine_russia_agg, x=ukraine_russia_agg.index, y=ukraine_russia_agg.columns,
-            title='Monthly Articles Count by Bias Rating'
+            title='Articles Count by Bias Rating'
         )
         return dcc.Graph(figure=fig)
     return dash.no_update  # No content for other subtabs
