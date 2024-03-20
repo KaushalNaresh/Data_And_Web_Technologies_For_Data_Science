@@ -95,5 +95,7 @@ def render_subtab_content(subtab):
         return dcc.Graph(figure=fig)
     return dash.no_update  # No content for other subtabs
 
+server = app.server
+
 if __name__ == '__main__':
     app.run_server(debug=True)
